@@ -15,11 +15,14 @@ namespace CodeMetricsBadCode
             LoadData();
         }
 
+
         private static void LoadData()
         {
-            FileStream file = new("C:\\file.txt", FileMode.CreateNew);
-            byte[] data = GetFileData();
-            file.Write(data, 0, data.Length);
+            using (FileStream file = new("C:\\file.txt", FileMode.CreateNew))
+            {
+                byte[] data = GetFileData();
+                file.Write(data, 0, data.Length);
+            }
         }
 
         private static byte[] GetFileData()

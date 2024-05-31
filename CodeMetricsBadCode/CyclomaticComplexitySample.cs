@@ -8,84 +8,45 @@ namespace CodeMetricsBadCode
 {
     internal class CyclomaticComplexitySample
     {
-        
+        private Dictionary<string, Action<string>> creditCardActions;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CyclomaticComplexitySample"/> class.
+        /// </summary>
+        public CyclomaticComplexitySample()
+        {
+            creditCardActions = new Dictionary<string, Action<string>>()
+                {
+                    { "A", (billingMode) => Console.WriteLine($"Billing Mode {billingMode} for Message Response A") },
+                    { "B", (billingMode) => Console.WriteLine($"Billing Mode {billingMode} for Message Response B") },
+                    { "C", (billingMode) => Console.WriteLine($"Billing Mode {billingMode} for Message Response C") },
+                    { "D", (billingMode) => Console.WriteLine($"Billing Mode {billingMode} for Message Response D") },
+                    { "E", (billingMode) => Console.WriteLine($"Billing Mode {billingMode} for Message Response E") },
+                    { "F", (billingMode) => Console.WriteLine($"Billing Mode {billingMode} for Message Response F") },
+                    { "G", (billingMode) => Console.WriteLine($"Billing Mode {billingMode} for Message Response G") },
+                    { "H", (billingMode) => Console.WriteLine($"Billing Mode {billingMode} for Message Response H") }
+                };
+        }
+
+        /// <summary>
+        /// Executes the specified billing mode and credit card method.
+        /// </summary>
+        /// <param name="billingMode">The billing mode.</param>
+        /// <param name="creditCardMethod">The credit card method.</param>
         public void Execute(string billingMode, string creditCardMethod)
         {
             /*
             This code is being used just for explaining the concept of cyclomatic complexity. 
             It makes no sense at all. Please Calculate Code Metrics for understanding 
             */
-            switch (creditCardMethod)
+            if (creditCardActions.ContainsKey(creditCardMethod))
             {
-                case "A":
-                    if (billingMode == "M1")
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    else
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    break;
-                case "B":
-                    if (billingMode == "M2")
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    else
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    break;
-                case "C":
-                    if (billingMode == "M3")
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    else
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    break;
-                case "D":
-                    if (billingMode == "M4")
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    else
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    break;
-                case "E":
-                    if (billingMode == "M5")
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    else
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    break;
-                case "F":
-                    if (billingMode == "M6")
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    else
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    break;
-                case "G":
-                    if (billingMode == "M7")
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    else
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    break;
-                case "H":
-                    if (billingMode == "M8")
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    else
-                        Console.WriteLine($"Billing Mode {billingMode} for " +
-                            $"Message Response {creditCardMethod}");
-                    break;
-                default:
-                    Console.WriteLine("The result of processing is unknown");
-                    break;
+                creditCardActions[creditCardMethod].Invoke(billingMode);
             }
-
+            else
+            {
+                Console.WriteLine("The result of processing is unknown");
+            }
         }
     }
 }

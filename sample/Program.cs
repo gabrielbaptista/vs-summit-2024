@@ -10,6 +10,9 @@
             TriangleCalculator triangleCalculator = new TriangleCalculator();
             triangleCalculator.CalculateArea(baseLenght, height);
             
+            CircleCalculator circleCalculator = new CircleCalculator();
+            circleCalculator.CalculateArea(10);
+
             Console.WriteLine("Hello, World!");
         }
     }
